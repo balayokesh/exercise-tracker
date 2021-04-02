@@ -17,6 +17,11 @@ connection.once('open', () => {
     console.log("Mongoose connection success");
 });
 
+const exerciseRouter = require('./routes/exercises');
+const userRouter = require('./routes/user');
+app.use('/exercises', exerciseRouter);
+app.use('/users', userRouter);
+
 // Server connection
 app.listen(port, () => {
     console.log(`Server started at port: ${port}`);
