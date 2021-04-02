@@ -22,7 +22,7 @@ const exerciseSchema = new schema(
         }
     },
     {
-        timestamps: true;
+        timestamps: true
     }
 );
 
