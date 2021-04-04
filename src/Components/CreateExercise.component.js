@@ -25,13 +25,13 @@ export default function CreateExercise () {
     function handleFormSubmit (e) {
         e.preventDefault();
 
-        let value = [
+        let exercise = [
             username,
             description,
             duration,
             date
         ];
-        console.log(value);
+        console.log(exercise);
         window.location = '/';
     }
 
