@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 export default function CreateUser () {
 
@@ -10,11 +11,14 @@ export default function CreateUser () {
 
     function handleFormSubmit (e) {
         e.preventDefault();
-        let user = [
-            {username}
-        ];
+        let user = {
+            username: username
+        };
         console.log(user);
-        window.location = '/';
+
+        axios.post('http://localhost:5000/users/add', user)
+            .then(res => alert(res.data))
+            .catch(err => alert(err))
     }
 
     return (
