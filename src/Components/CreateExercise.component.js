@@ -1,13 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-date-picker';
+import axios from 'axios';
 
 export default function CreateExercise () {
-
-    const [username, setUserName] = useState('test user');
-    const [users, setUsers] = useState(['test user 1', 'test user 2']);
-    const [description, setDescription] = useState(' ');
+    const [username, setUserName] = useState('');
+    const [users, setUsers] = useState([]);
+    const [description, setDescription] = useState('');
     const [duration, setDuration] = useState(0);
     const [date, setDate] = useState(new Date());
+
+    useEffect(() => {
+        axios.get('http://localhost:5000/users/')
+        .then(response => {
+            if (response.data.length > 0) {
+                setUsers(response.data.map(user => user.username));
+                setUserName(response.data[0].username);
+            }
+            else {
+                alert(`Response length: ${response.length}`);
+            }
+        })
+        .catch(err => {
+            alert(err);
+        })
+    }, []); 
 
     const onChangeUserName = (e) => {
         setUserName(e.target.value);
@@ -25,14 +41,17 @@ export default function CreateExercise () {
     function handleFormSubmit (e) {
         e.preventDefault();
 
-        let exercise = [
-            username,
-            description,
-            duration,
-            date
-        ];
+        let exercise = {
+            username: username,
+            description: description,
+            duration: duration,
+            date: date
+        };
         console.log(exercise);
-        window.location = '/';
+
+        axios.post('http://localhost:5000/exercises/add', exercise)
+            .then(res => alert(res.data))
+            .catch(err => alert(err))
     }
 
     return (
@@ -49,7 +68,7 @@ export default function CreateExercise () {
                         value={username}
                         onChange={onChangeUserName}
                     >
-                    {users.map(function (user) {
+                    {users.map(user => {
                         return (
                             <option key={user} value={user}>{user}</option>
                         );
