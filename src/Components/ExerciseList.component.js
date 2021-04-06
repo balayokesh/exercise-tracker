@@ -19,7 +19,7 @@ export default function ExerciseList () {
     const deleteExercise = (id) => {
         axios.delete('http://localhost:5000/exercises/'+id)
             .then(res => {
-                alert(res);
+                alert(res.data);
             })
             .catch(err => {
                 alert(err);
