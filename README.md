@@ -4,7 +4,7 @@
 
 Create .env file with below variable name in root folder
 ```
-ATLAS_URI=\<your  mongo  atlas  URI\>
+ATLAS_URI=\<mongoURI>\
 ```
 Install node modules using below command:
 ```
