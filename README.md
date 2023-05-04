@@ -1,13 +1,20 @@
-# To Run the project do:
+<h1 align='center'>Exercise Tracker</h1>
 
-## Create .env file with below variable name in root folder
+### To Run this project locally:
+
+Create .env file with below variable name in root folder
+```
 ATLAS_URI=\<your  mongo  atlas  URI\>
-
-## Install node modules using below command
+```
+Install node modules using below command:
+```
 npm i
-
-## Start local server using below command
+```
+Start local server using below command:
+```
 npm start
-
-## Start nodemon server
+```
+Open another terminal instance and run:
+```
 nodemon backend/server
+```
